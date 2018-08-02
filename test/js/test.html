@@ -41,6 +41,16 @@
     assert.equal(getScore(), 0);
   });
 
+  QUnit.test("backspace doesn't remove score when the last input was a dot", function ( assert ) {
+    enter('1');
+    enter('.');
+    assert.equal(getScore(), 1);
+    assert.equal(getScorecard(), '1.');
+    backspace();
+    assert.equal(getScorecard(), '1');
+    assert.equal(getScore(), 1);
+  });
+
 
   function getScore() {
     return document.getElementById('score').innerHTML;
